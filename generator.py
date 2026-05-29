@@ -1,0 +1,35 @@
+{
+  "industries": [
+    {"id": "garment", "name": "成衣纺织", "keywords": ["garment", "textile", "apparel", "clothing", "RMG", " knitwear", "woven", "denim", "fabric", "yarn", "spinning", "dyeing", "fashion", "export", "readymade"], "aliases": ["服装", "纺织", "成衣", "面料"]},
+    {"id": "infrastructure", "name": "基建", "keywords": ["infrastructure", "construction", "bridge", "road", "highway", "railway", "metro", "port", "terminal", "dam", "tunnel", "building", "civil engineering", "urban development", "PPP"], "aliases": ["基础设施", "建筑", "桥梁", "港口", "铁路"]},
+    {"id": "energy", "name": "能源", "keywords": ["energy", "power", "electricity", "grid", "transmission", "generation", "LNG", "gas", "coal", "power plant", "renewable", "nuclear", "fuel", "petroleum"], "aliases": ["电力", "能源", "电网", "天然气"]},
+    {"id": "solar", "name": "太阳能", "keywords": ["solar", "photovoltaic", "PV", "renewable energy", "green energy", "clean energy", "panel", "module", "inverter", "off-grid", "solar park"], "aliases": ["光伏", "太阳能", "新能源"]},
+    {"id": "e2w", "name": "电动两轮车", "keywords": ["electric two-wheeler", "e-bike", "e-scooter", "e-motorcycle", "electric bicycle", "EV two wheeler", "battery bike", "electric moped"], "aliases": ["电动车", "电动自行车", "电摩", "电动摩托车"]},
+    {"id": "ev", "name": "电动汽车", "keywords": ["electric vehicle", "EV", "electric car", "e-vehicle", "battery electric", "BEV", "charging station", "EV policy", "automotive electric"], "aliases": ["新能源汽车", "电动车", "电动汽车", "充电桩"]},
+    {"id": "pharma", "name": "制药", "keywords": ["pharmaceutical", "drug", "medicine", "vaccine", "API", "formulation", "generic", "biotech", "pharma", "healthcare product", "clinical trial", "FDA", "WHO"], "aliases": ["医药", "制药", "药品", "疫苗"]},
+    {"id": "ict_ecommerce", "name": "ICT电商", "keywords": ["ICT", "IT", "software", "digital", "e-commerce", "ecommerce", "online", "fintech", "startup", "tech", "internet", "mobile app", "platform", "digital payment", "B2B", "B2C", "daraz", "chaldal"], "aliases": ["信息通信", "电商", "互联网", "数字经济", "科技"]},
+    {"id": "jute", "name": "黄麻", "keywords": ["jute", "golden fiber", "hessian", "sacking", "jute bag", "jute mill", "jute product", "raw jute", "jute diversification", "jute goods"], "aliases": ["黄麻", "麻制品"]},
+    {"id": "leather", "name": "皮革", "keywords": ["leather", "tannery", "hide", "skin", "footwear", "shoe", "leather goods", "leather export", "wet blue", "finished leather", "Hazaribagh", "Savar tannery"], "aliases": ["皮革", "制鞋", "皮具"]},
+    {"id": "shipbreaking", "name": "船舶拆解", "keywords": ["ship breaking", "shipbreaking", "ship recycling", "ship yard", "Chittagong ship", "breaking yard", "scrap ship", "vessel dismantling", "Sitakunda"], "aliases": ["拆船", "船舶回收", "造船厂"]},
+    {"id": "fisheries", "name": "渔业", "keywords": ["fisheries", "fish", "aquaculture", "shrimp", "prawn", "hilsa", "seafood", "marine", "fishing", "frozen fish", "fish export", "processing plant"], "aliases": ["渔业", "水产", "虾", "海产品"]},
+    {"id": "agro", "name": "农产品加工", "keywords": ["agriculture", "agro", "food processing", "rice", "wheat", "sugar", "tea", "spice", "edible oil", "dairy", "poultry", "livestock", "frozen food", "agro processing"], "aliases": ["农业", "农产品", "食品加工", "粮食"]},
+    {"id": "ceramics", "name": "陶瓷", "keywords": ["ceramic", "tile", "sanitary ware", "pottery", "porcelain", "tableware", "ceramic industry", "tile factory", "brick"], "aliases": ["陶瓷", "瓷砖", "卫浴"]},
+    {"id": "furniture", "name": "家具", "keywords": ["furniture", "wood", "wooden", "timber", "home decor", "interior", "furnishing", "wood processing", "MDF", "particle board", "chair", "table", "cabinet"], "aliases": ["家具", "木材", "家居"]},
+    {"id": "light_mfg", "name": "轻工制造", "keywords": ["light engineering", "manufacturing", "SME", "small industry", "metalwork", "machinery", "tools", "hardware", "fastener", "bicycle", "toy", "stationery", "sports goods"], "aliases": ["轻工", "小制造业", "五金"]},
+    {"id": "shipbuilding", "name": "造船", "keywords": ["shipbuilding", "ship construction", "naval", "vessel", "boat", "shipyard", "Khulna shipyard", "Coastal ship", "inland vessel"], "aliases": ["造船", "船舶建造"]},
+    {"id": "medical", "name": "医疗器械", "keywords": ["medical device", "diagnostic", "equipment", "hospital equipment", "surgical", "instrument", "healthcare device", "medical technology", "imaging", "MRI", "CT scan"], "aliases": ["医疗器械", "医疗设备", "诊断设备"]},
+    {"id": "plastics", "name": "塑料", "keywords": ["plastic", "polymer", "PET", "PVC", "polypropylene", "packaging", "plastic goods", "molding", "injection", "plastic industry", "recycling"], "aliases": ["塑料", "聚合物", "包装"]},
+    {"id": "appliances", "name": "家电", "keywords": ["appliance", "electronics", "consumer electronics", "TV", "refrigerator", "AC", "air conditioner", "washing machine", "microwave", "home appliance", "gadget"], "aliases": ["家电", "消费电子", "电器"]},
+    {"id": "digital_economy", "name": "数字经济", "keywords": ["digital economy", "digital transformation", "data center", "cloud", "AI", "blockchain", "cybersecurity", "smart city", " Industry 4.0", "automation", "robotics", "IoT"], "aliases": ["数字经济", "数字化转型", "人工智能", "智慧城市"]},
+    {"id": "others", "name": "其他", "keywords": [], "aliases": []}
+  ],
+  "intelligence_types": [
+    {"id": "policy", "name": "政策", "keywords": ["policy", "government", "regulation", "law", "act", "bill", "cabinet", "minister", "ministry", "directive", "ban", "tariff", "duty", "tax", "incentive", "subsidy", "budget", "plan", "strategy", "MOU", "agreement", "treaty", "FTA", "WTO", "compliance"]},
+    {"id": "market", "name": "市场", "keywords": ["market", "demand", "supply", "price", "cost", "profit", "revenue", "sales", "export", "import", "trade", "order", "contract", "tender", "bid", "investment", "FDI", "joint venture", "IPO", "merger", "acquisition", "market share", "competition"]},
+    {"id": "project", "name": "项目", "keywords": ["project", "plant", "factory", "facility", "unit", "mill", "complex", "park", "zone", "hub", "inauguration", "launch", "opening", "groundbreaking", "completion", "expansion", "upgrade", "modernization", "rehabilitation"]},
+    {"id": "risk", "name": "风险", "keywords": ["risk", "crisis", "disaster", "accident", "fire", "collapse", "flood", "cyclone", "strike", "protest", "violence", "unrest", "corruption", "fraud", "scandal", "bankruptcy", "default", "debt", "loan", "NPL", "inflation", "devaluation", "shortage", "disruption"]},
+    {"id": "tech", "name": "技术", "keywords": ["technology", "innovation", "R&D", "research", "patent", "breakthrough", "new product", "new process", "automation", "digitalization", "AI", "machine learning", "blockchain", "green tech", "sustainable", "efficiency", "quality improvement"]},
+    {"id": "cooperation", "name": "合作", "keywords": ["cooperation", "partnership", "collaboration", "MOU", "agreement", "signing", "delegation", "visit", "forum", "summit", "expo", "trade fair", "B2B", "matchmaking", "twinning", "sister city", "aid", "grant", "loan", "assistance", "China", "Chinese", "Beijing", "Shanghai", "Shenzhen", "BRI", " Belt and Road"]},
+    {"id": "general", "name": "综合", "keywords": []}
+  ]
+}

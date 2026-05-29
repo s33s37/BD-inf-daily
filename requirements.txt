@@ -1,0 +1,151 @@
+"""
+孟加拉商业情报日报系统 - 微信通知模块
+支持企业微信机器人/Webhook推送
+"""
+import os
+import json
+import requests
+from datetime import datetime
+
+
+class WeChatNotifier:
+    def __init__(self):
+        self.webhook_url = os.environ.get("WECHAT_WEBHOOK_URL", "")
+
+    def send_daily_summary(self, stats, top_items, report_url):
+        """发送日报摘要到微信"""
+        if not self.webhook_url:
+            print("[WeChat] 未配置WECHAT_WEBHOOK_URL，跳过微信推送")
+            return False
+
+        date_str = datetime.now().strftime("%m月%d日")
+
+        # 构建消息内容
+        articles = []
+
+        # 头条卡片
+        if top_items:
+            top = top_items[0]
+            articles.append({
+                "title": f"📰 孟加拉商业情报日报 | {date_str}",
+                "description": f"今日共采集 {stats['total']} 条情报
+"
+                              f"🚨 风险预警: {stats['risk_count']} 条
+"
+                              f"📋 政策动态: {stats['policy_count']} 条
+"
+                              f"✅ 正面信号: {stats['by_impact'].get('positive', 0)} 条
+"
+                              f"🇨🇳 涉华情报: {stats.get('china_related', 0)} 条
+
+"
+                              f"头条: {top.get('chinese_summary', '')[:80]}...",
+                "url": report_url,
+                "picurl": ""
+            })
+
+        # 风险预警
+        risk_items = [i for i in top_items if i.get("risk_level") in ["high", "medium"]]
+        for item in risk_items[:3]:
+            articles.append({
+                "title": f"🚨 [{self._get_industry_name(item)}] {item.get('chinese_summary', '')[:40]}...",
+                "description": item.get("impact_reason", ""),
+                "url": item.get("original", {}).get("link", report_url),
+                "picurl": ""
+            })
+
+        # 政策动态
+        policy_items = [i for i in top_items if i.get("intelligence_type") == "policy"]
+        for item in policy_items[:2]:
+            articles.append({
+                "title": f"📋 [政策] {item.get('chinese_summary', '')[:40]}...",
+                "description": "点击查看详情",
+                "url": item.get("original", {}).get("link", report_url),
+                "picurl": ""
+            })
+
+        # 构建消息体
+        message = {
+            "msgtype": "news",
+            "news": {
+                "articles": articles[:8]  # 最多8条
+            }
+        }
+
+        try:
+            resp = requests.post(
+                self.webhook_url,
+                json=message,
+                timeout=30,
+                headers={"Content-Type": "application/json"}
+            )
+            resp.raise_for_status()
+            result = resp.json()
+            if result.get("errcode") == 0:
+                print("[WeChat] 日报推送成功")
+                return True
+            else:
+                print(f"[WeChat] 推送失败: {result}")
+                return False
+        except Exception as e:
+            print(f"[WeChat] 推送异常: {e}")
+            return False
+
+    def send_text_summary(self, stats, report_url):
+        """发送文本摘要（备用方案）"""
+        if not self.webhook_url:
+            return False
+
+        date_str = datetime.now().strftime("%Y年%m月%d日")
+        text = f"""📰 孟加拉商业情报日报 | {date_str}
+
+📊 今日概览:
+• 采集情报: {stats['total']} 条
+• 🚨 风险预警: {stats['risk_count']} 条
+• 📋 政策动态: {stats['policy_count']} 条
+• ✅ 正面信号: {stats['by_impact'].get('positive', 0)} 条
+• 🇨🇳 涉华情报: {stats.get('china_related', 0)} 条
+
+🔗 完整报告: {report_url}
+
+_自动生成，仅供研究参考_"""
+
+        message = {
+            "msgtype": "text",
+            "text": {
+                "content": text
+            }
+        }
+
+        try:
+            resp = requests.post(self.webhook_url, json=message, timeout=30)
+            return resp.json().get("errcode") == 0
+        except Exception as e:
+            print(f"[WeChat] 文本推送异常: {e}")
+            return False
+
+    def _get_industry_name(self, item):
+        """获取产业名称"""
+        industries = item.get("industries", ["others"])
+        industry_names = {
+            "garment": "成衣", "infrastructure": "基建", "energy": "能源",
+            "solar": "太阳能", "e2w": "电动两轮", "ev": "电动汽车",
+            "pharma": "制药", "ict_ecommerce": "ICT电商", "jute": "黄麻",
+            "leather": "皮革", "shipbreaking": "拆船", "fisheries": "渔业",
+            "agro": "农产", "ceramics": "陶瓷", "furniture": "家具",
+            "light_mfg": "轻工", "shipbuilding": "造船", "medical": "医疗",
+            "plastics": "塑料", "appliances": "家电", "digital_economy": "数字经济",
+            "others": "其他"
+        }
+        return industry_names.get(industries[0], "其他")
+
+
+if __name__ == "__main__":
+    notifier = WeChatNotifier()
+    test_stats = {
+        "total": 35, "risk_count": 5, "policy_count": 3,
+        "by_impact": {"positive": 8, "neutral": 20, "negative": 7},
+        "china_related": 4
+    }
+    test_items = []
+    notifier.send_text_summary(test_stats, "https://example.com/report")
